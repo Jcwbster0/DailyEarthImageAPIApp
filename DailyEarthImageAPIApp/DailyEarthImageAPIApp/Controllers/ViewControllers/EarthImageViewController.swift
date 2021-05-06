@@ -19,32 +19,23 @@ class EarthImageViewController: UIViewController {
     //MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        updateViews()
+        updateViewsForEarthImage()
     }
     
+    //MARK: - Properties
+    var earthImage: EarthImage?
+    
     //MARK: - Functions
-    func updateViews() {
-        
-        
-        EarthImageController.fetchEarthImageData { (result) in
-            
+    
+    func updateViewsForEarthImage () {
+        guard let earthImage = earthImage else {return}
+        EarthImageController.fetchImage(earthImage: earthImage) { (result) in
             DispatchQueue.main.async {
                 switch result {
-                case .success(let earthImage):
+                case .success(let image):
+                    self.earthImageview.image = image
                     self.earthCaptionLabel.text = earthImage.caption
                     self.earthDateLabel.text = earthImage.date
-                    
-                    EarthImageController.fetchImage(earthImage: earthImage) { (result) in
-                        
-                        DispatchQueue.main.async {
-                            switch result {
-                            case .success(let image):
-                                self.earthImageview.image = image
-                            case .failure(let error):
-                                print(print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)"))
-                            }
-                        }
-                    }
                 case .failure(let error):
                     print("Error in \(#function) : \(error.localizedDescription) \n---\n \(error)")
                 }

@@ -12,7 +12,7 @@ class EarthImageController {
     static let baseURL = URL(string: "https://epic.gsfc.nasa.gov/api/natural/")
     static let baseImageURL = URL(string: "https://epic.gsfc.nasa.gov/archive/natural")
     
-    static func fetchEarthImageData (apiKey: String = "api_key", completion: @escaping (Result<EarthImage, EarthImageError>) -> Void) {
+    static func fetchEarthImageData (apiKey: String = "api_key", completion: @escaping (Result<[EarthImage], EarthImageError>) -> Void) {
         
         guard let baseURL = baseURL else {return completion(.failure(.invalidURL))}
         
@@ -31,9 +31,8 @@ class EarthImageController {
             
             do {
                 let photoData = try JSONDecoder().decode([EarthImage].self, from: data)
-                print("here is the photo data \(photoData.first?.caption)")
-                let earthImage = photoData.first
-                completion(.success(earthImage ?? EarthImage(image: "", date: "", caption: "")))
+                
+                completion(.success(photoData))
                 
             } catch {
                 completion(.failure(.thrownError(error)))
@@ -83,6 +82,35 @@ class EarthImageController {
             completion(.success(image))
         }.resume()
     }
+    
+    static func fetchRandomEarthImageData (apiKey: String = "api_key", completion: @escaping (Result<EarthImage, EarthImageError>) -> Void) {
+        
+        guard let baseURL = baseURL else {return completion(.failure(.invalidURL))}
+        
+        var components = URLComponents(url: baseURL, resolvingAgainstBaseURL: true)
+        let APIKey = URLQueryItem(name: apiKey, value: "ibTjKK0aMi5GGlcIgZgdHdHN4SCV8p48YUBC6Xj5")
+        components?.queryItems = [APIKey]
+        
+        guard let finalURL = components?.url else {return completion(.failure(.invalidURL))}
+        
+        
+        URLSession.shared.dataTask(with: finalURL) { data, _, error in
+            if let error = error {
+                return completion(.failure(.thrownError(error)))
+            }
+            guard let data = data else {return completion(.failure(.noData))}
+            
+            do {
+                let photoData = try JSONDecoder().decode([EarthImage].self, from: data)
+                let earthImage = photoData.randomElement()
+                completion(.success(earthImage ?? EarthImage(image: "", date: "", caption: "")))
+                
+            } catch {
+                completion(.failure(.thrownError(error)))
+            }
+        }.resume()
+    }
+    
 }//End of Class
 
 
