@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wWG-CP-zPZ">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Earth Image View Controller-->
+        <scene sceneID="CKM-Sp-ORZ">
+            <objects>
+                <viewController id="wWG-CP-zPZ" customClass="EarthImageViewController" customModule="DailyEarthImageAPIApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="3Ar-Gv-byP">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="koc-3x-3xg">
+                                <rect key="frame" x="31" y="44" width="352" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="USd-qm-kwR">
+                                <rect key="frame" x="31" y="52" width="352" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MFn-aC-BmD">
+                                <rect key="frame" x="0.0" y="111" width="414" height="751"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="751" id="nDk-hm-nyI"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ML7-vu-Ef8"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="MFn-aC-BmD" firstAttribute="leading" secondItem="ML7-vu-Ef8" secondAttribute="leading" id="4ZD-eu-KyM"/>
+                            <constraint firstItem="ML7-vu-Ef8" firstAttribute="bottom" secondItem="MFn-aC-BmD" secondAttribute="bottom" id="6c0-G3-0Nl"/>
+                            <constraint firstItem="koc-3x-3xg" firstAttribute="centerX" secondItem="ML7-vu-Ef8" secondAttribute="centerX" id="7Qg-m1-vMb"/>
+                            <constraint firstItem="koc-3x-3xg" firstAttribute="top" secondItem="ML7-vu-Ef8" secondAttribute="top" id="Bal-tr-eDO"/>
+                            <constraint firstItem="koc-3x-3xg" firstAttribute="width" secondItem="3Ar-Gv-byP" secondAttribute="width" multiplier="0.85" id="HwW-ep-Dpc"/>
+                            <constraint firstItem="USd-qm-kwR" firstAttribute="centerX" secondItem="ML7-vu-Ef8" secondAttribute="centerX" id="LoA-Ad-uwe"/>
+                            <constraint firstItem="USd-qm-kwR" firstAttribute="width" secondItem="3Ar-Gv-byP" secondAttribute="width" multiplier="0.85" id="YCY-yj-o68"/>
+                            <constraint firstItem="ML7-vu-Ef8" firstAttribute="trailing" secondItem="MFn-aC-BmD" secondAttribute="trailing" id="lAK-A7-oDo"/>
+                            <constraint firstItem="USd-qm-kwR" firstAttribute="top" secondItem="koc-3x-3xg" secondAttribute="bottom" constant="8" symbolic="YES" id="ybV-lP-bFU"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="earthCaptionLabel" destination="koc-3x-3xg" id="2bO-2B-H2v"/>
+                        <outlet property="earthDateLabel" destination="USd-qm-kwR" id="gMp-I3-63R"/>
+                        <outlet property="earthImageview" destination="MFn-aC-BmD" id="Srw-9L-xZN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Smh-oY-3Uv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="260.86956521739131" y="181.47321428571428"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
